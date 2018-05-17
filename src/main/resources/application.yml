@@ -1,35 +1,24 @@
 server:
-  port: 10001
+  port: 8089
 
 spring:
-    datasource:
-        name: test
-        url: jdbc:mysql://47.100.121.205:3306/trade_data
-        username: zhouli
-        password: 1qaz@WSX
-        # 使用druid数据源
-        type: com.alibaba.druid.pool.DruidDataSource
-        driver-class-name: com.mysql.jdbc.Driver
-        filters: stat
-        maxActive: 20
-        initialSize: 1
-        maxWait: 60000
-        minIdle: 1
-        timeBetweenEvictionRunsMillis: 60000
-        minEvictableIdleTimeMillis: 300000
-        validationQuery: select 'x'
-        testWhileIdle: true
-        testOnBorrow: false
-        testOnReturn: false
-        poolPreparedStatements: true
-        maxOpenPreparedStatements: 20
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username:
+    password:
 mybatis:
-  mapper-locations: classpath:mapping/*.xml
   type-aliases-package: com.feitian.trade.sync.model
 
-#pagehelper分页插件
-pagehelper:
-    helperDialect: mysql
-    reasonable: true
-    supportMethodsArguments: true
-    params: count=countSql
+taobao:
+  refreshTokenUrl: 'http://container.open.taobao.com/container/refresh'
+  tbPostSessionUrl: ''
+  topBoxApiUrl: ''
+  topSecurityUrl: ''
+  topBoxAutUrl: ''
+  topBoxAppKey: ''
+  topBoxAppSecret: ''
+  redirectUri: ''
+  topBoxAppKeyForBuyer: ''
+  topBoxAppSecretForBuyer: ''
+  topToken: ''

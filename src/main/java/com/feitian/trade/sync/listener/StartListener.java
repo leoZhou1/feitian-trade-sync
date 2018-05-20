@@ -67,9 +67,11 @@ public class StartListener implements ApplicationListener<ApplicationEvent> {
                 for (TbUser user : users) {
                     List<Order> orders = importOrderService.importByUser(user, user.getLastUpdateTime(), now, false);
                     //保险起见，保存订单和修改最后更新时间，应该在同个事务里，目前还不是
-                    orderService.saveOrders(orders);
-                    user.setLastUpdateTime(now);
-                    userService.updateLastUpdateTime(user.getUserId(), now);
+                    if(null!=orders&&!orders.isEmpty()) {
+                    	orderService.saveOrders(orders);
+                    	user.setLastUpdateTime(now);
+                    	userService.updateLastUpdateTime(user.getUserId(), now);
+                    }
                 }
             }
         }

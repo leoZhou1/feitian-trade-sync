@@ -9,8 +9,8 @@ public class OrderDaoProvider {
     public String saveAll(Map map) {
         List<Order> configs = (List<Order>) map.get("list");
         StringBuilder sb = new StringBuilder();
-        sb.append("insert into order ");
-        sb.append("(orderId, userId, nick, kuaidiCom, kuaidiNum, cargo, recAddr, buyerMobile, comment, consignTime, created, tbKuaidiCom, payment, payment, recState, recCity, recDistrict)");
+        sb.append("insert into `order` ");
+        sb.append("(orderId, userId, nick, kuaidiCom, kuaidiNum, cargo, recAddr, buyerMobile, `comment`, consignTime, created, tbKuaidiCom, payment, payment, recState, recCity, recDistrict)");
         sb.append(" values ");
         String columns = "(#{list[{index}].orderId}, #{list[{index}].userId}, #{list[{index}].nick}, #{list[{index}].kuaidiCom}, #{list[{index}].kuaidiNum}, #{list[{index}].cargo}, #{list[{index}].recAddr}," +
                 "#{list[{index}].buyerMobile}, #{list[{index}].comment}, #{list[{index}].consignTime}, #{list[{index}].created}, #{list[{index}].tbKuaidiCom}, #{list[{index}].payment}, #{list[{index}].payment}," +

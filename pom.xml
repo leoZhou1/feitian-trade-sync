@@ -77,13 +77,11 @@
             <!--<version>2.0</version>-->
         <!--</dependency>-->
         
-        <dependency>
-            <groupId>com.taobao</groupId>
-            <artifactId>taobao-sdk-java-auto</artifactId>
-            <version>1494231250739-20170508</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/jar/taobao-sdk-java-auto_1494231250739-20170508.jar</systemPath>
-    	</dependency>
+        	<dependency>  
+			    <groupId>com.taobao</groupId>  
+			    <artifactId>taobao-sdk-java-auto</artifactId>  
+			    <version>1494231250739-20170508</version>  
+			</dependency> 
     </dependencies>
 
     <build>
@@ -105,19 +103,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources/jar</directory>
-                <targetPath>BOOT-INF/lib/</targetPath>
-                <includes>
-                    <include>**/*.jar</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <targetPath>BOOT-INF/classes/</targetPath>
-            </resource>
-        </resources>
     </build>
 
 

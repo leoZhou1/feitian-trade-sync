@@ -4,20 +4,21 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    username:
-    password:
+    url: jdbc:mysql://47.100.121.205:3306/sync_trade_data?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: zhouli
+    password: 1qaz@WSX
+
 mybatis:
   type-aliases-package: com.feitian.trade.sync.model
 
 taobao:
   refreshTokenUrl: 'http://container.open.taobao.com/container/refresh'
   tbPostSessionUrl: ''
-  topBoxApiUrl: ''
+  topBoxApiUrl: 'http://gw.api.taobao.com/router/rest'
   topSecurityUrl: ''
   topBoxAutUrl: ''
-  topBoxAppKey: ''
-  topBoxAppSecret: ''
+  topBoxAppKey: '12253109'
+  topBoxAppSecret: '4313e0a9a0999200c0dfcea224415638'
   redirectUri: ''
   topBoxAppKeyForBuyer: ''
   topBoxAppSecretForBuyer: ''

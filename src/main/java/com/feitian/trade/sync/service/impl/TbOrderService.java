@@ -21,6 +21,9 @@ import java.util.List;
 
 @Service
 public class TbOrderService implements ITbOrderService {
+	
+	
+	
     private final ITopApiService topApiService;
 
     @Autowired
@@ -80,7 +83,9 @@ public class TbOrderService implements ITbOrderService {
         TradesSoldGetResponse tbresp = null;
         int errCount = 0;
         do {
+        	
             tbresp = topApiService.tradesSoldGet(request, user);
+            System.out.println("----getTradeList  result----:"+tbresp);
             if (null == tbresp) {
                 try {
                     Thread.sleep(500);

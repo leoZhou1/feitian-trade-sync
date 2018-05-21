@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.Date;
 import java.util.List;
 
+@Mapper
 public interface TbUserMapper {
     @Insert("insert into tb_user(userId, nick, lastUpdateTime, expiresin, expiresinR1, expiresinR2, expiresinW1, expiresinW2, reexpiresin, authorizeTime) values" +
             "(#{user.userId}, #{user.nick}, #{user.lastUpdateTime}, #{user.expiresin}, #{user.expiresinR1}," +

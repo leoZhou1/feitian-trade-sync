@@ -65,13 +65,23 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.15</version>
         </dependency>
-
+		
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		</dependency>
         <!--京东宙斯sdk-->
         <!--<dependency>-->
             <!--<groupId>com.jd.open.api</groupId>-->
             <!--<artifactId>open-api-sdk</artifactId>-->
             <!--<version>2.0</version>-->
         <!--</dependency>-->
+        
+        	<dependency>  
+			    <groupId>com.taobao</groupId>  
+			    <artifactId>taobao-sdk-java-auto</artifactId>  
+			    <version>1494231250739-20170508</version>  
+			</dependency> 
     </dependencies>
 
     <build>
@@ -80,7 +90,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-
+			
             <!-- mybatis generator 自动生成代码插件 -->
             <plugin>
                 <groupId>org.mybatis.generator</groupId>

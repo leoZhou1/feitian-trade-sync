@@ -1,11 +1,12 @@
 package com.feitian.trade.sync.service.impl;
 
-import com.feitian.trade.sync.dao.OrderMapper;
-import com.feitian.trade.sync.model.Order;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.feitian.trade.sync.dao.OrderMapper;
+import com.feitian.trade.sync.model.TbOrder;
 
 @Service
 public class LocalOrderService {
@@ -16,7 +17,7 @@ public class LocalOrderService {
         this.orderMapper = orderMapper;
     }
 
-    public void saveOrders(List<Order> orderList) {
+    public void saveOrders(List<TbOrder> orderList) {
         orderMapper.saveAll(orderList);
     }
 }

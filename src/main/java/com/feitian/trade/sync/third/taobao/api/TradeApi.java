@@ -1,15 +1,35 @@
 package com.feitian.trade.sync.third.taobao.api;
 
-import com.feitian.trade.sync.model.TbUser;
-import com.feitian.trade.sync.third.taobao.ClientFactory;
-import com.taobao.api.ApiException;
-import com.taobao.api.TaobaoClient;
-import com.taobao.api.request.*;
-import com.taobao.api.response.*;
-
 import java.util.Calendar;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.feitian.trade.sync.model.TbUser;
+import com.feitian.trade.sync.third.taobao.ClientFactory;
+import com.google.gson.Gson;
+import com.taobao.api.ApiException;
+import com.taobao.api.TaobaoClient;
+import com.taobao.api.request.RefundsReceiveGetRequest;
+import com.taobao.api.request.TradeFullinfoGetRequest;
+import com.taobao.api.request.TradeGetRequest;
+import com.taobao.api.request.TradeMemoUpdateRequest;
+import com.taobao.api.request.TradeReceivetimeDelayRequest;
+import com.taobao.api.request.TraderatesGetRequest;
+import com.taobao.api.request.TradesSoldGetRequest;
+import com.taobao.api.request.TradesSoldIncrementGetRequest;
+import com.taobao.api.response.RefundsReceiveGetResponse;
+import com.taobao.api.response.TradeFullinfoGetResponse;
+import com.taobao.api.response.TradeGetResponse;
+import com.taobao.api.response.TradeMemoUpdateResponse;
+import com.taobao.api.response.TradeReceivetimeDelayResponse;
+import com.taobao.api.response.TraderatesGetResponse;
+import com.taobao.api.response.TradesSoldGetResponse;
+import com.taobao.api.response.TradesSoldIncrementGetResponse;
+
 public class TradeApi extends BaseTbApi {
+	Logger log=LoggerFactory.getLogger(TradeApi.class);
+	
 	public TradeApi(ClientFactory clientFactory) {
 		this.clientFactory = clientFactory;
 	}
@@ -22,12 +42,13 @@ public class TradeApi extends BaseTbApi {
 	 */
 	public TradesSoldGetResponse tradesSoldGet(TradesSoldGetRequest request, TbUser user) {
 		TaobaoClient client = clientFactory.getClient("json");
-		TradesSoldGetRequest req = new TradesSoldGetRequest();
-		request.setType("fixed,auction,,step,guarantee_trade,independent_simple_trade,independent_shop_trade,auto_delivery,ec,cod,fenxiao,game_equipment,shopex_trade,netcn_trade,external_trade,instant_trade,b2c_cod,hotel_trade,super_market_trade,super_market_cod_trade,taohua,waimai,nopaid,tmall_i18n,nopaid");
-
+//		TradesSoldGetRequest req = new TradesSoldGetRequest();
+		request.setType("fixed,auction,step,guarantee_trade,independent_simple_trade,independent_shop_trade,auto_delivery,ec,cod,fenxiao,game_equipment,shopex_trade,netcn_trade,external_trade,instant_trade,b2c_cod,hotel_trade,super_market_trade,super_market_cod_trade,taohua,waimai,nopaid,tmall_i18n,nopaid");
+		System.out.println("TradesSoldGet param:"+new Gson().toJson(request));
 		TradesSoldGetResponse resp = null;
 		try {
-			resp = client.execute(req, user.getSessionKey());
+			resp = client.execute(request, user.getSessionKey());
+			System.out.println("TradesSoldGet result:"+new Gson().toJson(resp));
 			//检查sessionKey是否过期
 			this.sessionIsValid(resp, user);
 		} catch (ApiException e) {

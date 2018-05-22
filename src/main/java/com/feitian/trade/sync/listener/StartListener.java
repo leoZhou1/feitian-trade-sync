@@ -1,10 +1,8 @@
 package com.feitian.trade.sync.listener;
 
-import com.feitian.trade.sync.model.Order;
-import com.feitian.trade.sync.model.TbUser;
-import com.feitian.trade.sync.service.IImportOrderService;
-import com.feitian.trade.sync.service.IUserService;
-import com.feitian.trade.sync.service.impl.LocalOrderService;
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
@@ -12,8 +10,11 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.ContextStartedEvent;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.List;
+import com.feitian.trade.sync.model.TbOrder;
+import com.feitian.trade.sync.model.TbUser;
+import com.feitian.trade.sync.service.IImportOrderService;
+import com.feitian.trade.sync.service.IUserService;
+import com.feitian.trade.sync.service.impl.LocalOrderService;
 
 @Component
 public class StartListener implements ApplicationListener<ApplicationEvent> {
@@ -65,7 +66,7 @@ public class StartListener implements ApplicationListener<ApplicationEvent> {
                 Date now = new Date();
                 List<TbUser> users = userService.findIncrementUsers(PAGE_SIZE);
                 for (TbUser user : users) {
-                    List<Order> orders = importOrderService.importByUser(user, user.getLastUpdateTime(), now, false);
+                    List<TbOrder> orders = importOrderService.importByUser(user, user.getLastUpdateTime(), now, false);
                     //保险起见，保存订单和修改最后更新时间，应该在同个事务里，目前还不是
                     if(null!=orders&&!orders.isEmpty()) {
                     	orderService.saveOrders(orders);

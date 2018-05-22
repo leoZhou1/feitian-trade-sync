@@ -5,6 +5,7 @@ import com.feitian.trade.sync.service.ITbOrderService;
 import com.feitian.trade.sync.service.ITopApiService;
 import com.feitian.trade.sync.third.ThirdApiException;
 import com.feitian.trade.sync.third.taobao.TaobaoRespFieldsConfig;
+import com.google.gson.Gson;
 import com.taobao.api.domain.Shipping;
 import com.taobao.api.domain.Trade;
 import com.taobao.api.request.TradesSoldGetRequest;
@@ -41,6 +42,7 @@ public class TbOrderService implements ITbOrderService {
     public long getTaobaoOrderTotal(TradesSoldGetRequest req, TbUser user) {
         req.setFields(TaobaoRespFieldsConfig.ORDER_ID);
         TradesSoldGetResponse tbresp = topApiService.tradesSoldGet(req, user);
+        System.out.println("=======getTaobaoOrderTotal===="+new Gson().toJson(tbresp));
         if (null == tbresp) {
             throw new ThirdApiException("淘宝接口调用出错");
         }
@@ -61,7 +63,7 @@ public class TbOrderService implements ITbOrderService {
     public long getTaobaoIncrementOrderTotal(TradesSoldIncrementGetRequest req, TbUser user) {
         req.setFields(TaobaoRespFieldsConfig.ORDER_ID);
         TradesSoldIncrementGetResponse tbresp = topApiService.tradesSoldIncrementGet(req, user);
-
+        System.out.println("=======getTaobaoIncrementOrderTotal===="+new Gson().toJson(tbresp));
         if (null == tbresp) {
             throw new ThirdApiException("淘宝接口调用出错");
         }
@@ -70,7 +72,6 @@ public class TbOrderService implements ITbOrderService {
             throw new ThirdApiException("淘宝接口调用出错|" + tbresp.getErrorCode());
         }
         return tbresp.getTotalResults();
-
     }
 
     /**
@@ -85,7 +86,7 @@ public class TbOrderService implements ITbOrderService {
         do {
         	
             tbresp = topApiService.tradesSoldGet(request, user);
-            System.out.println("----getTradeList  result----:"+tbresp);
+            System.out.println("==============getTradeList  result===========:"+tbresp);
             if (null == tbresp) {
                 try {
                     Thread.sleep(500);
@@ -112,6 +113,7 @@ public class TbOrderService implements ITbOrderService {
         int errCount = 0;
         do {
             tbresp = topApiService.tradesSoldIncrementGet(request, user);
+            System.out.println("==============getTradeList  result===========:"+tbresp);
             if (null == tbresp) {
                 try {
                     Thread.sleep(500);
